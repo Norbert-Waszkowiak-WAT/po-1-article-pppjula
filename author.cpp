@@ -1,37 +1,21 @@
-#ifndef AUTHOR 
-#define AUTHOR 
-#include <string>
 #include <iostream>
-class Author
-{
-    private:
-    std::string name;
-    std::string surname;
+#include "author.h"
 
-    public:
-    Author():name(""),surname(""){};
-    Author(std::string name, std::string surname) : name(name), surname(surname){};
+Author::Author(const string& name, const string& surname)
+        : name(name), surname(surname) {}
 
-    void print()
-    {
-        std::cout << name << " " << surname << std::endl;
-    }
+void Author::print() {
+    std::cout << name << " " << surname << std::endl;
+}
 
-    std::string toString()
-    {
-        return name + " " + surname;
-    };
+string Author::toString() const{
+    return name + " " + surname;;
+}
 
-    std::string getName()
-    {
-        return name;
-    };
+const string &Author::getName() const {
+    return name;
+}
 
-    std::string getSurname()
-    {
-        return surname;
-    };
-
-
-};
-#endif
+const string &Author::getSurname() const {
+    return surname;
+}

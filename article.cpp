@@ -1,46 +1,31 @@
-#ifndef ARTICLE
-#define ARTICLE 
-#include <string>
+#include "article.h"
+#include "author.h"
 #include <iostream>
-#include "author.cpp"
 
-using namespace std;
+Article::Article() : title(""), author(Author()), publicationYear(0), journal("") {}
 
-class Article
-{
-    private:
-        string title;
-        Author author;
-        int publicationYear;
-        string journal;
-    
-    public:
-        Article():title(),author(Author()),publicationYear(0),journal(""){};
-        Article (string articleTitle, Author& articleAuthor, int year, string journalName):
-        title(articleTitle), author(articleAuthor), publicationYear(year), journal(journalName) {};
-        Article(Article &other):title(other.title),author(other.author),publicationYear(other.publicationYear),journal(other.journal){};
-    
-    void displayInfo(){
-        cout << "Article Title: " << title << endl;
-        cout << "Author: " << author.toString() << endl;
-        cout << "Publication Year: " << publicationYear << endl;
-        cout << "Journal: " << journal << endl;
-    }
+Article::Article(const string &articleTitle, const Author &articleAuthor, int year, const string &journalName)
+        : title(articleTitle), author(articleAuthor), publicationYear(year), journal(journalName) {}
 
-    string getTitle() {
-        return title;
-    }
+Article::Article(const Article &other)
+        : title(other.title), author(other.author), publicationYear(other.publicationYear), journal(other.journal) {}
 
-    Author getAuthor() {
-        return author;
-    }
+void Article::displayInfo() const{
+    std::cout << "Article: " << title << " by " << author.toString() << " (" << publicationYear << ") - " << journal << endl;
+}
 
-    int getPublicationYear() {
-        return publicationYear;
-    }
+const string &Article::getTitle() const {
+    return title;
+}
 
-    string getJournal() {
-        return journal;
-    }
-};
-#endif
+const Author &Article::getAuthor() const {
+    return author;
+}
+
+int Article::getPublicationYear() const {
+    return publicationYear;
+}
+
+const string &Article::getJournal() const {
+    return journal;
+}
